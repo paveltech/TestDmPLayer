@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Handler;
+import android.support.multidex.MultiDex;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -33,6 +34,7 @@ public class ApplicationDMPlayer extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        MultiDex.install(this);
 
         applicationContext = getApplicationContext();
         applicationHandler = new Handler(applicationContext.getMainLooper());

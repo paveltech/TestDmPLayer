@@ -5,8 +5,6 @@
  */
 package com.dmplayer.fragments;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -27,24 +25,39 @@ import android.widget.TextView;
 
 import com.dmplayer.R;
 import com.dmplayer.activities.DMPlayerBaseActivity;
+import com.dmplayer.api.ApiClient;
+import com.dmplayer.api.ApiInterface;
 import com.dmplayer.manager.MediaController;
 import com.dmplayer.models.SongDetail;
 import com.dmplayer.phonemidea.DMPlayerUtility;
 import com.dmplayer.phonemidea.PhoneMediaControl;
 import com.dmplayer.phonemidea.PhoneMediaControl.PhoneMediaControlINterface;
+import com.dmplayer.pojo.SongItem;
+import com.dmplayer.pojo.SongResponse;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentAllSongs extends Fragment {
 
     private ListView recycler_songslist;
     private AllSongsListAdapter mAllSongsListAdapter;
     private ArrayList<SongDetail> songList = new ArrayList<SongDetail>();
+    public ApiInterface apiInterface;
+    public String SONG_PATH = "https://vod.rockerzs.com/music/numb/master.m3u8";
+    public String IMAGE_PATH = "http://storage.googleapis.com/automotive-media/";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_allsongs, null);
+        apiInterface = ApiClient.getRetrofitInstance().create(ApiInterface.class);
         setupInitialViews(v);
         loadAllSongs();
         return v;
@@ -62,6 +75,28 @@ public class FragmentAllSongs extends Fragment {
     }
 
     private void loadAllSongs() {
+        apiInterface.getSongs().enqueue(new Callback<SongResponse>() {
+            @Override
+            public void onResponse(Call<SongResponse> call, Response<SongResponse> response) {
+                if (response.isSuccessful()) {
+                    for (SongItem songItem : response.body().getMusic()) {
+                        songList.add(new SongDetail(songItem.getDuration(),
+                                2, songItem.getArtist(),
+                                songItem.getTitle(),
+                                SONG_PATH, songItem.getTitle(),
+                                "" + songItem.getDuration(), IMAGE_PATH+songItem.getImage()));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SongResponse> call, Throwable t) {
+
+            }
+        });
+
+
+        /*
         PhoneMediaControl mPhoneMediaControl = PhoneMediaControl.getInstance();
         PhoneMediaControl.setPhonemediacontrolinterface(new PhoneMediaControlINterface() {
 
@@ -72,6 +107,8 @@ public class FragmentAllSongs extends Fragment {
             }
         });
         mPhoneMediaControl.loadMusicList(getActivity(), -1, PhoneMediaControl.SonLoadFor.All, "");
+
+         */
     }
 
     public class AllSongsListAdapter extends BaseAdapter {
@@ -126,7 +163,7 @@ public class FragmentAllSongs extends Fragment {
             mViewHolder.textViewSongArtisNameAndDuration.setText((audioDuration.isEmpty() ? "" : audioDuration + " | ") + mDetail.getArtist());
             mViewHolder.textViewSongName.setText(mDetail.getTitle());
             String contentURI = "content://media/external/audio/media/" + mDetail.getId() + "/albumart";
-            imageLoader.displayImage(contentURI, mViewHolder.imageSongThm, options);
+            imageLoader.displayImage(mDetail.getImagePath(), mViewHolder.imageSongThm, options);
 
 
             convertView.setOnClickListener(new OnClickListener() {

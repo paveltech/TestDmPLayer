@@ -16,7 +16,10 @@ import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.text.TextUtils;
 
+import com.google.gson.annotations.SerializedName;
+
 public class SongDetail {
+
 	public int id;
 	public int album_id;
 	public String artist;
@@ -24,8 +27,21 @@ public class SongDetail {
 	public String display_name;
 	public String duration;
 	public String path;
+	public String imagePath;
 	public float audioProgress = 0.0f;
 	public int audioProgressSec = 0;
+
+
+	public SongDetail(int _id, int aLBUM_ID, String _artist, String _title, String _path, String _display_name, String _duration, String imagePath) {
+		this.id = _id;
+		this.album_id = aLBUM_ID;
+		this.artist = _artist;
+		this.title = _title;
+		this.path = _path;
+		this.imagePath = imagePath;
+		this.display_name = _display_name;
+		this.duration = TextUtils.isEmpty(_duration) ? "0" : String.valueOf((Long.valueOf(_duration) / 1000));
+	}
 
 	public SongDetail(int _id, int aLBUM_ID, String _artist, String _title, String _path, String _display_name, String _duration) {
 		this.id = _id;
@@ -36,6 +52,7 @@ public class SongDetail {
 		this.display_name = _display_name;
 		this.duration = TextUtils.isEmpty(_duration) ? "0" : String.valueOf((Long.valueOf(_duration) / 1000));
 	}
+
 
 	public int getId() {
 		return id;
@@ -93,14 +110,15 @@ public class SongDetail {
 		this.path = path;
 	}
 
-	public Bitmap getSmallCover(Context context) {
 
+
+	public Bitmap getSmallCover(Context context) {
 		// ImageLoader.getInstance().getDiskCache().g
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inSampleSize = 1;
 		Bitmap curThumb = null;
 		try {
-			Uri uri = Uri.parse("content://media/external/audio/media/" + getId() + "/albumart");
+			Uri uri = Uri.parse(""+getImagePath());
 			ParcelFileDescriptor pfd = context.getContentResolver().openFileDescriptor(uri, "r");
 			if (pfd != null) {
 				FileDescriptor fd = pfd.getFileDescriptor();
@@ -121,7 +139,7 @@ public class SongDetail {
 		options.inSampleSize = 1;
 		Bitmap curThumb = null;
 		try {
-			Uri uri = Uri.parse("content://media/external/audio/media/" + getId() + "/albumart");
+			Uri uri = Uri.parse(""+getImagePath());
 			ParcelFileDescriptor pfd = context.getContentResolver().openFileDescriptor(uri, "r");
 			if (pfd != null) {
 				FileDescriptor fd = pfd.getFileDescriptor();
@@ -133,5 +151,14 @@ public class SongDetail {
 			e.printStackTrace();
 		}
 		return curThumb;
+	}
+
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 }

@@ -206,6 +206,7 @@ public class MusicPlayerService extends Service implements AudioManager.OnAudioF
                 RemoteControlClient.MetadataEditor metadataEditor = remoteControlClient.editMetadata(true);
                 metadataEditor.putString(MediaMetadataRetriever.METADATA_KEY_ARTIST, authorName);
                 metadataEditor.putString(MediaMetadataRetriever.METADATA_KEY_TITLE, songName);
+
                 if (audioInfo != null && audioInfo.getCover(ApplicationDMPlayer.applicationContext) != null) {
                     metadataEditor.putBitmap(RemoteControlClient.MetadataEditor.BITMAP_KEY_ARTWORK,
                             audioInfo.getCover(ApplicationDMPlayer.applicationContext));

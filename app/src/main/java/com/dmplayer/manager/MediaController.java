@@ -466,11 +466,6 @@ public class MediaController implements NotificationManager.NotificationCenterDe
     }
 
 
-    /**
-     * Shuffle The SongList
-     *
-     * @param songList
-     */
     public static void shuffleList(ArrayList<SongDetail> songs) {
         if (MusicPreferance.shuffledPlaylist.isEmpty()) {
             ArrayList<SongDetail> songList = new ArrayList<SongDetail>(songs);
