@@ -217,6 +217,7 @@ public class MediaController implements NotificationManager.NotificationCenterDe
         isPaused = false;
         lastProgress = 0;
         MusicPreferance.playingSongDetail = mSongDetail;
+
         NotificationManager.getInstance().postNotificationName(NotificationManager.audioDidStarted, mSongDetail);
 
         if (audioPlayer != null) {

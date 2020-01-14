@@ -8,9 +8,12 @@ package com.dmplayer;
 import java.util.ArrayList;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Handler;
 import android.support.multidex.MultiDex;
 import android.view.Display;
@@ -30,6 +33,9 @@ public class ApplicationDMPlayer extends Application {
     public static volatile Handler applicationHandler = null;
     public static Point displaySize = new Point();
     public static float density = 1;
+
+    public static final String CHANNEL_ID = "player";
+
 
     @Override
     public void onCreate() {
@@ -103,6 +109,21 @@ public class ApplicationDMPlayer extends Application {
         } catch (Exception e) {
         }
     }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "Example Channel",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+    }
+
+
 
     /**
      * Related to Data Base.
