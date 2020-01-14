@@ -250,6 +250,8 @@ public class MediaController implements NotificationManager.NotificationCenterDe
         return true;
     }
 
+
+
     private void playNextSong(boolean byStop) {
         ArrayList<SongDetail> currentPlayList = shuffleMusic ? MusicPreferance.shuffledPlaylist : MusicPreferance.playlist;
 
@@ -376,6 +378,7 @@ public class MediaController implements NotificationManager.NotificationCenterDe
                 }
             }
         } catch (Exception e) {
+
         }
         stopProgressTimer();
         isPaused = false;

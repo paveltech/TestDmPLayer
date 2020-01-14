@@ -247,6 +247,7 @@ public class MusicPlayerService extends Service implements AudioManager.OnAudioF
             metadataEditor.apply();
             audioManager.unregisterRemoteControlClient(remoteControlClient);
             audioManager.abandonAudioFocus(this);
+            MediaController.getInstance().stopAudio();
         }
         try {
             TelephonyManager mgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
