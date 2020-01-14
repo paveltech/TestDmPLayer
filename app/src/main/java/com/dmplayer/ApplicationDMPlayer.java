@@ -60,6 +60,7 @@ public class ApplicationDMPlayer extends Application {
          * Imageloader initialize
 		 */
         initImageLoader(applicationContext);
+        createNotificationChannel();
     }
 
     @Override

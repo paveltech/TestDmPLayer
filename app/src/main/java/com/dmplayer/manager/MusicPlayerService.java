@@ -154,7 +154,7 @@ public class MusicPlayerService extends Service implements AudioManager.OnAudioF
                     //.setStyle(new NotificationCompat.DecoratedCustomViewStyle())
                     .build();
 
-            notificationManager.notify(1, notification);
+            //notificationManager.notify(1, notification);
 
             /*
             //notification.contentView = simpleContentView;
