@@ -7,6 +7,7 @@ package com.dmplayer.phonemidea;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
@@ -47,7 +48,7 @@ public class PhoneMediaControl {
 
     public void loadMusicList(final Context context, final long id, final SonLoadFor sonloadfor, final String path) {
 
-        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+        @SuppressLint("StaticFieldLeak") AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
             ArrayList<SongDetail> songsList = null;
 
             @Override
