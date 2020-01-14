@@ -173,6 +173,8 @@ public class FragmentAllSongs extends Fragment {
                 public void onClick(View v) {
 
                     SongDetail mDetail = songList.get(position);
+
+
                     ((DMPlayerBaseActivity) getActivity()).loadSongsDetails(mDetail);
 
                     if (mDetail != null) {

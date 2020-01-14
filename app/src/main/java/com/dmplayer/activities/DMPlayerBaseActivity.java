@@ -643,7 +643,7 @@ public class DMPlayerBaseActivity extends AppCompatActivity implements View.OnCl
     }
 
     public void loadSongsDetails(SongDetail mDetail) {
-        String contentURI = "content://media/external/audio/media/" + mDetail.getId() + "/albumart";
+        String contentURI = mDetail.getImagePath();
         imageLoader.displayImage(contentURI, songAlbumbg, options, animateFirstListener);
         imageLoader.displayImage(contentURI, img_bottom_slideone, options, animateFirstListener);
         imageLoader.displayImage(contentURI, img_bottom_slidetwo, options, animateFirstListener);
