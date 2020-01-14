@@ -86,6 +86,7 @@ public class FragmentAllSongs extends Fragment {
                                 SONG_PATH, songItem.getTitle(),
                                 "" + songItem.getDuration(), IMAGE_PATH+songItem.getImage()));
                     }
+                    mAllSongsListAdapter.notifyDataSetChanged();
                 }
             }
 

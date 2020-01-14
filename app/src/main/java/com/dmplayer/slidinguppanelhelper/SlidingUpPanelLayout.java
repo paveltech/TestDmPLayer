@@ -612,11 +612,8 @@ public class SlidingUpPanelLayout extends ViewGroup {
 		return mOverlayContent;
 	}
 
-	/**
-	 * Sets whether or not the main content is clipped to the top of the panel
-	 * 
-	 * @param overlayed
-	 */
+
+
 	public void setClipPanel(boolean clip) {
 		mClipPanel = clip;
 	}
@@ -1073,7 +1070,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
 	@Override
 	protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
 		boolean result;
-		final int save = canvas.save(Canvas.CLIP_SAVE_FLAG);
+		final int save = canvas.save();
 
 		if (mSlideableView != child) { // if main view
 			// Clip against the slider; no sense drawing what will immediately
