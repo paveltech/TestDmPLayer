@@ -89,9 +89,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 26 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Gradle: __local_aars__:/Users/android/Android Development/Test Player/TestDmPLayer/app/libs/universal-image-loader-1.9.3.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:/Users/android/Android Development/Test Player/TestDmPLayer/app/libs/nineoldandroids-2.4.0.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:/Users/android/Android Development/Test Player/TestDmPLayer/app/libs/gson-2.2.3.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:E.\Mahfuj vai\TestDmPLayer\app\libs\gson-2.2.3.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:E.\Mahfuj vai\TestDmPLayer\app\libs\nineoldandroids-2.4.0.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:E.\Mahfuj vai\TestDmPLayer\app\libs\universal-image-loader-1.9.3.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-annotations:26.0.2@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:design:26.0.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:recyclerview-v7:26.0.2@aar" level="project" />
